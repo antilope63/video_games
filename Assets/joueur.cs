@@ -7,7 +7,7 @@ public class Joueur : MonoBehaviour
     public float vitesseforward = 5f;
     public float othervitesse = 5f; // Vitesse de déplacement latéral et arrière
     public float vitesseSprint = 8f; // Vitesse de déplacement avec Shift
-    public float sensibilitéSouris = 100f;
+    public float sensibilitéSouris = 5f;
     public Transform joueurBody; // Assurez-vous d'assigner ce Transform dans l'inspecteur
     private float rotationX = 0f; // Stocke la rotation actuelle sur l'axe X
 
