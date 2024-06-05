@@ -108,7 +108,7 @@ MonoBehaviour:
   vitesseforward: 5
   othervitesse: 5
   vitesseSprint: 10
-  "sensibilit\xE9Souris": 400
+  "sensibilit\xE9Souris": 800
   joueurBody: {fileID: 2937577100084068543}
 --- !u!1 &3204092662585584542
 GameObject:
