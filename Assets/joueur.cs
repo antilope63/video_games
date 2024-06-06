@@ -10,6 +10,8 @@ public class Joueur : MonoBehaviour
     public float sensibilitéSouris = 5f;
     public Transform joueurBody; // Assurez-vous d'assigner ce Transform dans l'inspecteur
     private float rotationX = 0f; // Stocke la rotation actuelle sur l'axe X
+    public float maxDistance = 2.0f; // Distance maximale du raycast
+    private RaycastHit hit; // Stocke l'information du raycast
 
     void Start()
     {
@@ -60,6 +62,18 @@ public class Joueur : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             joueurBody.Translate(Vector3.right * othervitesse * Time.deltaTime);
+        }
+
+        // Raycasting pour détecter des objets devant le joueur
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, maxDistance))
+        {
+            Debug.Log("Objet détecté : " + hit.collider.name);
+            // Si l'objet détecté a le tag "Detectable"
+            if (hit.collider.CompareTag("Detectable"))
+            {
+                // Changez la couleur du cube pour indiquer qu'il a été détecté
+                hit.collider.GetComponent<cube_test>()?.ChangeColor(Color.red);
+            }
         }
     }
 }
