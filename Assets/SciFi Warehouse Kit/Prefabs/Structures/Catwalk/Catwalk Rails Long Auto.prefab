@@ -674,8 +674,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8969971835649028076}
-  - component: {fileID: -670862968211224881}
   - component: {fileID: 8478022125687685033}
+  - component: {fileID: 4308846265823478186}
+  - component: {fileID: -670862968211224881}
   m_Layer: 0
   m_Name: Catwalk Rails Long Auto
   m_TagString: Ground
@@ -700,27 +701,6 @@ Transform:
   - {fileID: 8237382136085934908}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &-670862968211224881
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5341519867693014527}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f7ada8e13506b094e8be9b07b70f0d80, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!65 &8478022125687685033
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -742,6 +722,42 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 8.001415, y: 4.0173655, z: 7.6986346}
   m_Center: {x: -0.00182724, y: 3.4817004, z: -0.03387189}
+--- !u!114 &4308846265823478186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5341519867693014527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7089dfefaa0fb834097b7edac09ff9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorAnimator: {fileID: -670862968211224881}
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
+--- !u!95 &-670862968211224881
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5341519867693014527}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f7ada8e13506b094e8be9b07b70f0d80, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6398762682460304113
 GameObject:
   m_ObjectHideFlags: 0

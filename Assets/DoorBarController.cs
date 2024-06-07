@@ -8,7 +8,6 @@ public class DoorBarController : MonoBehaviour
     private AudioSource audioSource;
 
     private bool isOpen = false; // Variable pour suivre si la porte est ouverte
-    private bool isAnimating = false; // Variable pour suivre si une animation est en cours
 
     void Start()
     {
@@ -17,36 +16,32 @@ public class DoorBarController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !isOpen && !isAnimating)
+        if (other.CompareTag("Player") && !isOpen)
         {
-            doorAnimator.SetTrigger("open");
-            PlaySound(openSound);
-            isOpen = true; // Marquer la porte comme ouverte
-            isAnimating = true; // Marquer qu'une animation est en cours
+            OpenDoor();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") && isOpen && !isAnimating)
+        if (other.CompareTag("Player") && isOpen)
         {
-            doorAnimator.SetTrigger("close");
-            PlaySound(closeSound);
-            isOpen = false; // Marquer la porte comme fermée
-            isAnimating = true; // Marquer qu'une animation est en cours
+            CloseDoor();
         }
     }
 
-    void Update()
+    private void OpenDoor()
     {
-        // Vérifier si l'animation est terminée
-        if (isAnimating)
-        {
-            if (doorAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && !doorAnimator.IsInTransition(0))
-            {
-                isAnimating = false; // L'animation est terminée
-            }
-        }
+        doorAnimator.SetTrigger("open");
+        PlaySound(openSound);
+        isOpen = true; // Marquer la porte comme ouverte
+    }
+
+    private void CloseDoor()
+    {
+        doorAnimator.SetTrigger("close");
+        PlaySound(closeSound);
+        isOpen = false; // Marquer la porte comme fermée
     }
 
     private void PlaySound(AudioClip clip)

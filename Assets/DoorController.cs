@@ -3,12 +3,10 @@ using UnityEngine;
 public class DoorController : MonoBehaviour
 {
     public Animator doorAnimator;
+    public string openDirection; // "right", "left", "up", "down"
     public AudioClip openSound;
     public AudioClip closeSound;
     private AudioSource audioSource;
-
-    private bool isOpen = false; // Variable pour suivre si la porte est ouverte
-    private bool isAnimating = false; // Variable pour suivre si une animation est en cours
 
     void Start()
     {
@@ -17,35 +15,57 @@ public class DoorController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !isOpen && !isAnimating)
+        if (other.CompareTag("Player"))
         {
-            doorAnimator.SetTrigger("open");
+            PlayOpenAnimation();
             PlaySound(openSound);
-            isOpen = true; // Marquer la porte comme ouverte
-            isAnimating = true; // Marquer qu'une animation est en cours
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player") && isOpen && !isAnimating)
+        if (other.CompareTag("Player"))
         {
-            doorAnimator.SetTrigger("close");
+            PlayCloseAnimation();
             PlaySound(closeSound);
-            isOpen = false; // Marquer la porte comme fermée
-            isAnimating = true; // Marquer qu'une animation est en cours
         }
     }
 
-    void Update()
+    private void PlayOpenAnimation()
     {
-        // Vérifier si l'animation est terminée
-        if (isAnimating)
+        switch (openDirection)
         {
-            if (doorAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1 && !doorAnimator.IsInTransition(0))
-            {
-                isAnimating = false; // L'animation est terminée
-            }
+            case "right":
+                doorAnimator.SetTrigger("openRight");
+                break;
+            case "left":
+                doorAnimator.SetTrigger("openLeft");
+                break;
+            case "up":
+                doorAnimator.SetTrigger("openUp");
+                break;
+            case "down":
+                doorAnimator.SetTrigger("openDown");
+                break;
+        }
+    }
+
+    private void PlayCloseAnimation()
+    {
+        switch (openDirection)
+        {
+            case "right":
+                doorAnimator.SetTrigger("closeRight");
+                break;
+            case "left":
+                doorAnimator.SetTrigger("closeLeft");
+                break;
+            case "up":
+                doorAnimator.SetTrigger("closeUp");
+                break;
+            case "down":
+                doorAnimator.SetTrigger("closeDown");
+                break;
         }
     }
 
