@@ -1,0 +1,124 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &742861773206355314
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -875059362765140557, guid: 395afaa12a159634199ed3f0cb64fa80, type: 3}
+      propertyPath: doorAnimator
+      value: 
+      objectReference: {fileID: 2313330270693602160}
+    - target: {fileID: 4308846265823478186, guid: 395afaa12a159634199ed3f0cb64fa80, type: 3}
+      propertyPath: doorAnimator
+      value: 
+      objectReference: {fileID: 2313330270693602160}
+    - target: {fileID: 4308846265823478186, guid: 395afaa12a159634199ed3f0cb64fa80, type: 3}
+      propertyPath: isPuzzleDoor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341519867693014527, guid: 395afaa12a159634199ed3f0cb64fa80, type: 3}
+      propertyPath: m_Name
+      value: Catwalk Rails Long Auto Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5341519867693014527, guid: 395afaa12a159634199ed3f0cb64fa80, type: 3}
+      propertyPath: m_TagString
+      value: PuzzleDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 8969971835649028076, guid: 395afaa12a159634199ed3f0cb64fa80, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 118
+      objectReference: {fileID: 0}
+    - target: {fileID: 8969971835649028076, guid: 395afaa12a159634199ed3f0cb64fa80, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8969971835649028076, guid: 395afaa12a159634199ed3f0cb64fa80, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8969971835649028076, guid: 395afaa12a159634199ed3f0cb64fa80, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8969971835649028076, guid: 395afaa12a159634199ed3f0cb64fa80, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8969971835649028076, guid: 395afaa12a159634199ed3f0cb64fa80, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8969971835649028076, guid: 395afaa12a159634199ed3f0cb64fa80, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8969971835649028076, guid: 395afaa12a159634199ed3f0cb64fa80, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8969971835649028076, guid: 395afaa12a159634199ed3f0cb64fa80, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8969971835649028076, guid: 395afaa12a159634199ed3f0cb64fa80, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4308846265823478186, guid: 395afaa12a159634199ed3f0cb64fa80, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5341519867693014527, guid: 395afaa12a159634199ed3f0cb64fa80, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5086069862271158209}
+    - targetCorrespondingSourceObject: {fileID: 5341519867693014527, guid: 395afaa12a159634199ed3f0cb64fa80, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2313330270693602160}
+  m_SourcePrefab: {fileID: 100100000, guid: 395afaa12a159634199ed3f0cb64fa80, type: 3}
+--- !u!1 &4643150588860096653 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5341519867693014527, guid: 395afaa12a159634199ed3f0cb64fa80, type: 3}
+  m_PrefabInstance: {fileID: 742861773206355314}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5086069862271158209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4643150588860096653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2735b5c650610d3449020d5f8d6dc0b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorAnimator: {fileID: 0}
+  openSound: {fileID: 0}
+  closeSound: {fileID: 0}
+  isPuzzleDoor: 0
+--- !u!95 &2313330270693602160
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4643150588860096653}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f7ada8e13506b094e8be9b07b70f0d80, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
