@@ -116,7 +116,6 @@ GameObject:
   m_Component:
   - component: {fileID: 972244189732658583}
   - component: {fileID: 8570499717011270669}
-  - component: {fileID: 279278745080819520}
   m_Layer: 0
   m_Name: Door Automatic
   m_TagString: Untagged
@@ -161,19 +160,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 18.40028, y: 2.060767, z: 1.4840218}
   m_Center: {x: 0.016326904, y: 1.0247266, z: 3.0017505}
---- !u!114 &279278745080819520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4261886463943454596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0832af957d2054f47a944595d603d3b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doorAnimator: {fileID: 0}
-  openDirection: 
-  openSound: {fileID: 0}
-  closeSound: {fileID: 0}
