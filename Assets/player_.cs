@@ -79,15 +79,21 @@ public class PlayerMovementController : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
 
-        // Raycasting
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, raycastRange))
+        // Interactions via Raycasting
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            if (hit.collider.CompareTag("Detectable"))
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, raycastRange))
             {
-                Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
-                // Change la couleur du cube en rouge
-                hit.collider.gameObject.GetComponent<Renderer>().material.color = Color.red;
+                if (hit.collider.CompareTag("Detectable"))
+                {
+                    Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
+                    ATM atm = hit.collider.gameObject.GetComponent<ATM>();
+                    if (atm != null)
+                    {
+                        atm.Interact();
+                    }
+                }
             }
         }
     }
