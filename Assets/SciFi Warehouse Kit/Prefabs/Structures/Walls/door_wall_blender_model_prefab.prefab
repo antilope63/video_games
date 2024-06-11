@@ -51,7 +51,7 @@ PrefabInstance:
     - target: {fileID: -4430846939274791194, guid: 6618f7ea21f91e04a989fe614d40e188, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -7506048319210351127, guid: 2f2ed6a1d0de25241b73a2b914d4e028, type: 3}
+      objectReference: {fileID: 2100000, guid: 9105cf4bbc4fb31479e2afe3138479a0, type: 2}
     - target: {fileID: 919132149155446097, guid: 6618f7ea21f91e04a989fe614d40e188, type: 3}
       propertyPath: m_Name
       value: door_wall_blender_model_prefab
@@ -59,7 +59,7 @@ PrefabInstance:
     - target: {fileID: 1467041910720839796, guid: 6618f7ea21f91e04a989fe614d40e188, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -978160288850237216, guid: 2f2ed6a1d0de25241b73a2b914d4e028, type: 3}
+      objectReference: {fileID: 2100000, guid: d893f707bc253a84aa1e7d87361c830a, type: 2}
     - target: {fileID: 2133692341548850741, guid: 6618f7ea21f91e04a989fe614d40e188, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
