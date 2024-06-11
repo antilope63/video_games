@@ -120,7 +120,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8170962087039567002}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -207,6 +207,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5141884343314972354, guid: 1e3974e3db8c48c41b2604d2478e7e9e, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -283,6 +287,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3477663187008753093, guid: 1e3974e3db8c48c41b2604d2478e7e9e, type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5141884343314972354, guid: 1e3974e3db8c48c41b2604d2478e7e9e, type: 3}
+      propertyPath: m_Convex
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -363,6 +371,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5141884343314972354, guid: 1e3974e3db8c48c41b2604d2478e7e9e, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -441,6 +453,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5141884343314972354, guid: 1e3974e3db8c48c41b2604d2478e7e9e, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -517,6 +533,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3691659005178554142, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4569633193101568694, guid: aedebdaeae12a6743b39120d2f5156b0, type: 3}
+      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
