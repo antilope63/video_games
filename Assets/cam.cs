@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectInteraction : MonoBehaviour
+public class cam : MonoBehaviour
 {
     public float raycastRange = 10.0f;
     private PlayerMovementController playerMovementController;

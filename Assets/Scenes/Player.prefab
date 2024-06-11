@@ -11,7 +11,11 @@ GameObject:
   - component: {fileID: 5703168785101477502}
   - component: {fileID: 5936706592683924091}
   - component: {fileID: 5344670247605147736}
+<<<<<<< HEAD
   - component: {fileID: 1453427073749776423}
+=======
+  - component: {fileID: 5381367703927345874}
+>>>>>>> refs/remotes/origin/scene
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -94,7 +98,11 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1934942594883051345}
   m_Enabled: 1
+<<<<<<< HEAD
 --- !u!114 &1453427073749776423
+=======
+--- !u!114 &5381367703927345874
+>>>>>>> refs/remotes/origin/scene
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,7 +111,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1934942594883051345}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: 8634d84f131a54090808120a641609eb, type: 3}
+=======
+  m_Script: {fileID: 11500000, guid: d7910bacc4651ca43b133e9c9440b650, type: 3}
+>>>>>>> refs/remotes/origin/scene
   m_Name: 
   m_EditorClassIdentifier: 
   raycastRange: 10
@@ -120,7 +132,11 @@ GameObject:
   - component: {fileID: 6845399289065885114}
   - component: {fileID: 926406434352349015}
   - component: {fileID: 5051509623536259673}
+<<<<<<< HEAD
   - component: {fileID: 5342443111513422434}
+=======
+  - component: {fileID: 2603950997193411335}
+>>>>>>> refs/remotes/origin/scene
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -242,7 +258,11 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+<<<<<<< HEAD
 --- !u!114 &5342443111513422434
+=======
+--- !u!114 &2603950997193411335
+>>>>>>> refs/remotes/origin/scene
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -251,12 +271,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3204092662585584542}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11d965999f208422f8028f6dd337f917, type: 3}
+  m_Script: {fileID: 11500000, guid: 2057709fedf58fe46908d073a6c80bdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
   sprintSpeed: 10
   mouseSensitivity: 2
+<<<<<<< HEAD
   jumpForce: 5
   sprintDuration: 2
   sprintCooldown: 3
@@ -294,3 +315,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5703168785101477502}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+  jumpForce: 250
+  sprintDuration: 999999
+  sprintCooldown: 0
+  holdPosition: {fileID: 0}
+  raycastRange: 10
+  heldObject: {fileID: 0}
+>>>>>>> refs/remotes/origin/scene
