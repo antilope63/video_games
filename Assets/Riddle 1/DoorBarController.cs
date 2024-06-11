@@ -17,21 +17,23 @@ public class DoorBarController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("OnTriggerEnter called on " + gameObject.name);
         if (other.CompareTag("Player") && !isOpen && !isPuzzleDoor)
         {
+            Debug.Log("Opening door on trigger enter: " + gameObject.name);
             OpenDoor();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log("OnTriggerExit called on " + gameObject.name);
         if (other.CompareTag("Player") && isOpen && !isPuzzleDoor)
         {
+            Debug.Log("Closing door on trigger exit: " + gameObject.name);
             CloseDoor();
         }
     }
-
-
 
     public void OpenDoor() // Méthode publique pour ouvrir la porte
     {
