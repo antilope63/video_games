@@ -1,6 +1,17 @@
 fileFormatVersion: 2
 <<<<<<<< HEAD:Assets/Scenes/Player.prefab.meta
+<<<<<<< HEAD
+<<<<<<< HEAD
+guid: 4482314ab60acce4f8c06f4159c05286
+=======
 guid: 7305bfaedd207194687464cc473f5d3a
+>>>>>>> 9a22a9f263e609b436a1b4278a4961268f381ab1
+=======
+guid: 7305bfaedd207194687464cc473f5d3a
+=======
+guid: 4482314ab60acce4f8c06f4159c05286
+>>>>>>> origin/riddles
+>>>>>>> 889a326755652b88b14062f492981dd3f02f053b
 ========
 guid: 92a783bc254f10b4895408e576bb184d
 >>>>>>>> refs/remotes/origin/riddles:Assets/Riddle 1/ATM_Pink Variant.prefab.meta
