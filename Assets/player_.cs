@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class PlayerMovementController : MonoBehaviour
 {
     public float speed = 5.0f;
@@ -11,12 +10,15 @@ public class PlayerMovementController : MonoBehaviour
     public float jumpForce = 5.0f;
     public float sprintDuration = 2.0f;
     public float sprintCooldown = 3.0f;
-
+    public Transform holdPosition; // Position où l'objet sera tenu
+   
+   
     private float verticalRotation = 0f;
     private bool isGrounded;
     private float sprintTimer = 0f;
     private float sprintCooldownTimer = 0f;
     private bool canSprint = true;
+    public GameObject heldObject = null; // Rendre public pour accéder depuis ObjectInteraction
 
     private Rigidbody rb;
 
@@ -78,6 +80,24 @@ public class PlayerMovementController : MonoBehaviour
             Debug.Log("Jump initiated");
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
+
+        // Interactions via Raycasting
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, raycastRange))
+            {
+                if (hit.collider.CompareTag("Detectable"))
+                {
+                    Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
+                    ATM atm = hit.collider.gameObject.GetComponent<ATM>();
+                    if (atm != null)
+                    {
+                        atm.Interact();
+                    }
+                }
+            }
+        }
     }
 
     private void OnCollisionStay(Collision collision)
@@ -106,4 +126,3 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 }
-
