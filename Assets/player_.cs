@@ -10,13 +10,14 @@ public class PlayerMovementController : MonoBehaviour
     public float jumpForce = 5.0f;
     public float sprintDuration = 2.0f;
     public float sprintCooldown = 3.0f;
-    public float raycastRange = 10.0f;
+    public Transform holdPosition; // Position où l'objet sera tenu
 
     private float verticalRotation = 0f;
     private bool isGrounded;
     private float sprintTimer = 0f;
     private float sprintCooldownTimer = 0f;
     private bool canSprint = true;
+    public GameObject heldObject = null; // Rendre public pour accéder depuis ObjectInteraction
 
     private Rigidbody rb;
 
