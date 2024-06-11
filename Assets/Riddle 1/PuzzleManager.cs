@@ -31,6 +31,7 @@ public class PuzzleManager : MonoBehaviour
     public void purpleATM()
     {
         PurpleCounter++;
+        Debug.Log("purpleATM called. PurpleCounter: " + PurpleCounter);
 
         switch (PurpleCounter)
         {
@@ -63,6 +64,7 @@ public class PuzzleManager : MonoBehaviour
     public void pinkATM()
     {
         PinkCounter++;
+        Debug.Log("pinkATM called. PinkCounter: " + PinkCounter);
 
         switch (PinkCounter)
         {
@@ -95,6 +97,7 @@ public class PuzzleManager : MonoBehaviour
     public void yellowATM()
     {
         YellowCounter++;
+        Debug.Log("yellowATM called. YellowCounter: " + YellowCounter);
 
         switch (YellowCounter)
         {
