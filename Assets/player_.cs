@@ -11,8 +11,8 @@ public class PlayerMovementController : MonoBehaviour
     public float sprintDuration = 2.0f;
     public float sprintCooldown = 3.0f;
     public Transform holdPosition; // Position où l'objet sera tenu
-   
-   
+    public float raycastRange = 10.0f; // Portée du raycast
+
     private float verticalRotation = 0f;
     private bool isGrounded;
     private float sprintTimer = 0f;
@@ -81,22 +81,32 @@ public class PlayerMovementController : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
 
-        // Interactions via Raycasting
-        if (Input.GetKeyDown(KeyCode.E))
+        // Mise à jour de la position de l'objet tenu
+        if (heldObject != null)
         {
-            RaycastHit hit;
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, raycastRange))
-            {
-                if (hit.collider.CompareTag("Detectable"))
-                {
-                    Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
-                    ATM atm = hit.collider.gameObject.GetComponent<ATM>();
-                    if (atm != null)
-                    {
-                        atm.Interact();
-                    }
-                }
-            }
+            heldObject.transform.position = holdPosition.position;
+            heldObject.transform.rotation = holdPosition.rotation;
+        }
+    }
+
+    public void PickUpObject(GameObject obj)
+    {
+        Debug.Log("Picking up: " + obj.name);
+        heldObject = obj;
+        obj.GetComponent<Rigidbody>().isKinematic = true;
+        obj.transform.SetParent(holdPosition, true); // worldPositionStays true to maintain world space
+        obj.transform.localPosition = Vector3.zero; // Reset local position
+        obj.transform.localRotation = Quaternion.identity; // Reset local rotation
+    }
+
+    public void DropObject()
+    {
+        if (heldObject != null)
+        {
+            Debug.Log("Dropping: " + heldObject.name);
+            heldObject.GetComponent<Rigidbody>().isKinematic = false;
+            heldObject.transform.SetParent(null);
+            heldObject = null;
         }
     }
 
