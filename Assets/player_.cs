@@ -11,7 +11,8 @@ public class PlayerMovementController : MonoBehaviour
     public float sprintDuration = 2.0f;
     public float sprintCooldown = 3.0f;
     public Transform holdPosition; // Position où l'objet sera tenu
-
+   
+   
     private float verticalRotation = 0f;
     private bool isGrounded;
     private float sprintTimer = 0f;
