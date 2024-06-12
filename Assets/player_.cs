@@ -13,12 +13,18 @@ public class PlayerMovementController : MonoBehaviour
     public Transform holdPosition; // Position où l'objet sera tenu
     public float raycastRange = 10.0f; // Portée du raycast
 
+    public GameObject hintPanel1; // Référence au premier HintPanel
+    public GameObject hintPanel2; // Référence au deuxième HintPanel
+    public GameObject hintPanel3; // Référence au troisième HintPanel
+    public GameObject hintPanel4; // Référence au quatrième HintPanel
+
     private float verticalRotation = 0f;
     private bool isGrounded;
     private float sprintTimer = 0f;
     private float sprintCooldownTimer = 0f;
     private bool canSprint = true;
     public GameObject heldObject = null; // Rendre public pour accéder depuis ObjectInteraction
+    private GameObject currentHintPanel = null;
 
     private Rigidbody rb;
 
@@ -26,6 +32,12 @@ public class PlayerMovementController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true; // Empêche le Rigidbody de tourner à cause de la physique
+
+        // Assurez-vous que les panneaux sont désactivés au début
+        if (hintPanel1 != null) hintPanel1.SetActive(false);
+        if (hintPanel2 != null) hintPanel2.SetActive(false);
+        if (hintPanel3 != null) hintPanel3.SetActive(false);
+        if (hintPanel4 != null) hintPanel4.SetActive(false);
     }
 
     void Update()
@@ -86,6 +98,96 @@ public class PlayerMovementController : MonoBehaviour
         {
             heldObject.transform.position = holdPosition.position;
             heldObject.transform.rotation = holdPosition.rotation;
+        }
+
+        // Interaction avec les objets (ramasser et déposer)
+        HandleObjectInteraction();
+
+        // Interaction avec les panneaux (énigmes)
+        HandlePanelInteraction();
+    }
+
+    private void HandleObjectInteraction()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, raycastRange))
+        {
+            if (hit.collider.CompareTag("Interactable"))
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    if (heldObject == null)
+                    {
+                        PickUpObject(hit.collider.gameObject);
+                    }
+                    else
+                    {
+                        DropObject();
+                    }
+                }
+            }
+        }
+    }
+
+    private void HandlePanelInteraction()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, raycastRange))
+        {
+            Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
+
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                // Désactiver le panneau courant
+                if (currentHintPanel != null)
+                {
+                    currentHintPanel.SetActive(false);
+                    Debug.Log("Current panel disabled: " + currentHintPanel.name);
+                }
+
+                // Activer le panneau correspondant
+                if (hit.collider.CompareTag("enigme2_1"))
+                {
+                    Debug.Log("Toggling hintPanel1");
+                    ToggleHintPanel(hintPanel1);
+                }
+                else if (hit.collider.CompareTag("enigme2_2"))
+                {
+                    Debug.Log("Toggling hintPanel2");
+                    ToggleHintPanel(hintPanel2);
+                }
+                else if (hit.collider.CompareTag("enigme2_3"))
+                {
+                    Debug.Log("Toggling hintPanel3");
+                    ToggleHintPanel(hintPanel3);
+                }
+                else if (hit.collider.CompareTag("enigme2_4"))
+                {
+                    Debug.Log("Toggling hintPanel4");
+                    ToggleHintPanel(hintPanel4);
+                }
+                else
+                {
+                    Debug.Log("No matching tag found for: " + hit.collider.gameObject.name);
+                }
+            }
+        }
+    }
+
+    private void ToggleHintPanel(GameObject hintPanel)
+    {
+        if (hintPanel != null)
+        {
+            bool isActive = hintPanel.activeSelf;
+            hintPanel.SetActive(!isActive);
+            Debug.Log("Panel toggled: " + hintPanel.name + " | New state: " + !isActive);
+
+            // Mettre à jour le panneau courant
+            currentHintPanel = hintPanel;
+        }
+        else
+        {
+            Debug.Log("HintPanel n'est pas assigné.");
         }
     }
 

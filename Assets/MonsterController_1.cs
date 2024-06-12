@@ -26,7 +26,7 @@ public class MonsterController_1 : MonoBehaviour
         }
         else
         {
-            Debug.LogError("NavMeshAgent n'est pas sur un NavMesh ou est null !");
+            
         }
     }
 
@@ -35,18 +35,18 @@ public class MonsterController_1 : MonoBehaviour
         if (agent != null && agent.isOnNavMesh)
         {
             float distanceToPlayer = Vector3.Distance(player.position, transform.position);
-            Debug.Log("Distance to player: " + distanceToPlayer);
+            
 
             if (distanceToPlayer <= detectionRange && distanceToPlayer > attackRange)
             {
-                Debug.Log("Player detected. Chasing player...");
+                
                 agent.isStopped = false;
                 agent.speed = runSpeed;
                 agent.SetDestination(player.position);
 
                 animator.SetBool("isWalking", false);
                 animator.SetBool("isRunning", true);
-                Debug.Log("Set isRunning to true");
+                
             }
             else if (distanceToPlayer <= attackRange)
             {
@@ -54,16 +54,16 @@ public class MonsterController_1 : MonoBehaviour
                 agent.isStopped = true;
                 animator.SetBool("isWalking", false);
                 animator.SetBool("isRunning", false);
-                Debug.Log("Set isRunning to false");
+                
                 // Ici tu peux ajouter du code pour l'animation d'attaque
             }
             else
             {
-                Debug.Log("Player not in detection range.");
+               ;
                 agent.isStopped = true;
                 animator.SetBool("isWalking", false);
                 animator.SetBool("isRunning", false);
-                Debug.Log("Set isRunning to false");
+                
             }
         }
         else
