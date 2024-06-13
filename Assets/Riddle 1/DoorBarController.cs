@@ -18,7 +18,7 @@ public class DoorBarController : MonoBehaviour
     {
         if (!isOpen)
         {
-            doorAnimator.SetTrigger("Open");
+            doorAnimator.SetTrigger("open");
             isOpen = true;
             Debug.Log("Door opened: " + gameObject.name);
         }
@@ -28,7 +28,7 @@ public class DoorBarController : MonoBehaviour
     {
         if (isOpen)
         {
-            doorAnimator.SetTrigger("Close");
+            doorAnimator.SetTrigger("close");
             isOpen = false;
             Debug.Log("Door closed: " + gameObject.name);
         }
