@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PuzzleManager : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class PuzzleManager : MonoBehaviour
     private int PurpleCounter;
     private int PinkCounter;
     private int YellowCounter;
+
+    // Définir l'événement OnPuzzleCompleted
+    public static UnityEvent OnPuzzleCompleted = new UnityEvent();
 
     void Start()
     {
@@ -85,20 +89,42 @@ public class PuzzleManager : MonoBehaviour
         // Nouvelle combinaison pour réussir le puzzle
         bool isPurpleCorrect = PuzzlePieceHolder1.Length > 1 && PuzzlePieceHolder1[0].activeSelf;
         bool isPinkCorrect = PuzzlePieceHolder2.Length > 0 && PuzzlePieceHolder2[1].activeSelf;
+<<<<<<< HEAD
         bool isYellowCorrect = PuzzlePieceHolder3.Length > 2 && PuzzlePieceHolder3[2].activeSelf;
+=======
+        bool isYellowCorrect = PuzzlePieceHolder3.Length > 0 && PuzzlePieceHolder3[1].activeSelf;
+>>>>>>> 5517c394658f209d32bd1e5f4ee12c06dc54d47c
 
-        Debug.Log("Checking");
         if (isPurpleCorrect && isPinkCorrect && isYellowCorrect)
         {
-            Debug.Log("Correct code entered: Red Cube, Purple Sphere, Yellow Cylinder.");
-            if (specificDoorController != null)
+            Debug.Log("Puzzle completed correctly!");
+
+            // Détruire les pièces holders
+            DestroyPuzzlePieceHolders();
+
+            // Déclencher l'événement OnPuzzleCompleted
+            if (OnPuzzleCompleted != null)
             {
-                specificDoorController.OpenDoor();
+                OnPuzzleCompleted.Invoke();
             }
         }
-        else
+    }
+
+    private void DestroyPuzzlePieceHolders()
+    {
+        foreach (GameObject holder in PuzzlePieceHolder1)
         {
-            Debug.Log("Incorrect code. Keep trying.");
+            Destroy(holder);
         }
+        foreach (GameObject holder in PuzzlePieceHolder2)
+        {
+            Destroy(holder);
+        }
+        foreach (GameObject holder in PuzzlePieceHolder3)
+        {
+            Destroy(holder);
+        }
+
+        Debug.Log("Puzzle piece holders destroyed.");
     }
 }
