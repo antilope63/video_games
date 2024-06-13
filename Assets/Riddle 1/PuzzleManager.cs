@@ -83,9 +83,9 @@ public class PuzzleManager : MonoBehaviour
     public void CheckPuzzleCompletion()
     {
         // Nouvelle combinaison pour réussir le puzzle
-        bool isPurpleCorrect = PuzzlePieceHolder1.Length > 0 && PuzzlePieceHolder1[1].activeSelf;
+        bool isPurpleCorrect = PuzzlePieceHolder1.Length > 1 && PuzzlePieceHolder1[0].activeSelf;
         bool isPinkCorrect = PuzzlePieceHolder2.Length > 0 && PuzzlePieceHolder2[1].activeSelf;
-        bool isYellowCorrect = PuzzlePieceHolder3.Length > 1 && PuzzlePieceHolder3[1].activeSelf;
+        bool isYellowCorrect = PuzzlePieceHolder3.Length > 2 && PuzzlePieceHolder3[2].activeSelf;
 
         Debug.Log("Checking");
         if (isPurpleCorrect && isPinkCorrect && isYellowCorrect)
