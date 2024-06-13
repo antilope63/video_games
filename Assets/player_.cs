@@ -26,6 +26,7 @@ public class PlayerMovementController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true; // Empêche le Rigidbody de tourner à cause de la physique
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()

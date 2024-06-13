@@ -7,6 +7,7 @@ public class ATM : MonoBehaviour
     public GameObject[] puzzlePieces;  // Les pièces de puzzle (cube, sphère, cylindre)
     public string puzzleType;  // Le type de puzzle (red, purple, yellow)
     private int pieceCounter = 0;
+    public GameObject puzManager;
 
     void Start()
     {
@@ -44,8 +45,9 @@ public class ATM : MonoBehaviour
         {
             bool shouldBeActive = (i == activeIndex);
             puzzlePieces[i].SetActive(shouldBeActive);
-            //Debug.Log(puzzlePieces[i].name + " active state set to " + shouldBeActive);
+            Debug.Log(puzzlePieces[i].name + " active state set to " + shouldBeActive);
         }
+        puzManager.GetComponent<PuzzleManager>().CheckPuzzleCompletion();
     }
 
     private IEnumerator ForceRefresh()

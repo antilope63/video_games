@@ -35,7 +35,7 @@ public class cam : MonoBehaviour
             }
             else if (hit.collider.CompareTag("ATM"))
             {
-                //Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
+                Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     ATM atm = hit.collider.GetComponent<ATM>();

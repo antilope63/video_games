@@ -46,6 +46,7 @@ public class PuzzleManager : MonoBehaviour
 
     public void purpleATM()
     {
+        Debug.Log("Purple Hit");
         PurpleCounter++;
         if (PurpleCounter >= PuzzlePieceHolder1.Length) PurpleCounter = 0;
         ActivatePuzzlePiece(PuzzlePieceHolder1, PurpleCounter);
@@ -79,13 +80,14 @@ public class PuzzleManager : MonoBehaviour
         }
     }
 
-    private void CheckPuzzleCompletion()
+    public void CheckPuzzleCompletion()
     {
         // Nouvelle combinaison pour réussir le puzzle
-        bool isPurpleCorrect = PuzzlePieceHolder1.Length > 1 && PuzzlePieceHolder1[1].activeSelf;
-        bool isPinkCorrect = PuzzlePieceHolder2.Length > 0 && PuzzlePieceHolder2[0].activeSelf;
-        bool isYellowCorrect = PuzzlePieceHolder3.Length > 2 && PuzzlePieceHolder3[2].activeSelf;
+        bool isPurpleCorrect = PuzzlePieceHolder1.Length > 0 && PuzzlePieceHolder1[1].activeSelf;
+        bool isPinkCorrect = PuzzlePieceHolder2.Length > 0 && PuzzlePieceHolder2[1].activeSelf;
+        bool isYellowCorrect = PuzzlePieceHolder3.Length > 1 && PuzzlePieceHolder3[1].activeSelf;
 
+        Debug.Log("Checking");
         if (isPurpleCorrect && isPinkCorrect && isYellowCorrect)
         {
             Debug.Log("Correct code entered: Red Cube, Purple Sphere, Yellow Cylinder.");
