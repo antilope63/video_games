@@ -20,7 +20,7 @@ public class cam : MonoBehaviour
         {
             if (hit.collider.CompareTag("Interactable"))
             {
-                Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
+                //Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     if (playerMovementController.heldObject == null)
@@ -30,6 +30,22 @@ public class cam : MonoBehaviour
                     else
                     {
                         playerMovementController.DropObject();
+                    }
+                }
+            }
+            else if (hit.collider.CompareTag("ATM"))
+            {
+                Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    ATM atm = hit.collider.GetComponent<ATM>();
+                    if (atm != null)
+                    {
+                        atm.Interact();
+                    }
+                    else
+                    {
+                        Debug.LogError("ATM component not found on " + hit.collider.gameObject.name);
                     }
                 }
             }

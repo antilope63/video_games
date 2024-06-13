@@ -3,7 +3,10 @@ guid: 5603936e7bbf2c3468784aa29a870f9a
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - PuzzlePieceHolderRed: {fileID: 5822952010186986606, guid: 530b2a1fdc9e0ab498a1989be70a8d99, type: 3}
+  - PuzzlePieceHolderPurple: {fileID: 3292884122553468570, guid: a4c52acb60fed0c438b445a707d244a4, type: 3}
+  - PuzzlePieceHolderYellow: {fileID: 8572576639177454674, guid: e5fd6df3e275dbd4984c20a42162fb89, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

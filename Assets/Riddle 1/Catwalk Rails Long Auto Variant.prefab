@@ -29,6 +29,18 @@ PrefabInstance:
       value: PuzzleDoor
       objectReference: {fileID: 0}
     - target: {fileID: 8969971835649028076, guid: 395afaa12a159634199ed3f0cb64fa80, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8969971835649028076, guid: 395afaa12a159634199ed3f0cb64fa80, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8969971835649028076, guid: 395afaa12a159634199ed3f0cb64fa80, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8969971835649028076, guid: 395afaa12a159634199ed3f0cb64fa80, type: 3}
       propertyPath: m_LocalPosition.x
       value: 118
       objectReference: {fileID: 0}

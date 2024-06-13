@@ -4,122 +4,55 @@ using UnityEngine;
 
 public class ATM : MonoBehaviour
 {
-    public GameObject atmScreen;
-    public PuzzleManager puzzleManager;
-    public string puzzleType;
-    private Behaviour halo;
+    public GameObject[] puzzlePieces;  // Les pièces de puzzle (cube, sphère, cylindre)
+    public string puzzleType;  // Le type de puzzle (red, purple, yellow)
+    private int pieceCounter = 0;
+    public GameObject puzManager;
 
     void Start()
     {
-        halo = (Behaviour)GetComponent("Halo");
-        if (halo != null)
+        if (puzzlePieces == null || puzzlePieces.Length == 0)
         {
-            halo.enabled = false;
-            Debug.Log("Halo component found and disabled initially.");
+            //Debug.LogError("Puzzle pieces not assigned for " + gameObject.name);
         }
         else
         {
-            Debug.LogError("Halo component not found!");
-        }
-
-        if (atmScreen == null)
-        {
-            Debug.LogError("atmScreen is not assigned!");
-        }
-        else
-        {
-            Debug.Log("atmScreen assigned successfully.");
-            Debug.Log("Initial scale of atmScreen: " + atmScreen.transform.localScale);
+            // Initialiser les pièces en activant seulement la première
+            ActivatePuzzlePiece(0);
         }
     }
 
     public void Interact()
     {
-        Debug.Log("ATM Interact called");
-        if (puzzleManager != null)
+        if (puzzlePieces != null && puzzlePieces.Length > 0)
         {
-            switch (puzzleType)
-            {
-                case "purple":
-                    puzzleManager.purpleATM();
-                    break;
-                case "pink":
-                    puzzleManager.pinkATM();
-                    break;
-                case "yellow":
-                    puzzleManager.yellowATM();
-                    break;
-                default:
-                    Debug.LogWarning("Type de puzzle non reconnu: " + puzzleType);
-                    break;
-            }
-        }
-    }
+            pieceCounter = (pieceCounter + 1) % puzzlePieces.Length;
+            ActivatePuzzlePiece(pieceCounter);
+            //Debug.Log("Changed piece to " + puzzlePieces[pieceCounter].name + " on " + gameObject.name);
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("Player entered ATM space");
-            if (halo != null)
-            {
-                SetHalo(true);
-                Debug.Log("Halo enabled.");
-            }
-
-            if (atmScreen != null)
-            {
-                Debug.Log("Current scale of atmScreen before scaling: " + atmScreen.transform.localScale);
-                LeanTween.scale(atmScreen, Vector3.one, 1).setOnComplete(() =>
-                {
-                    Debug.Log("atmScreen scaled to one");
-                    Debug.Log("New scale of atmScreen: " + atmScreen.transform.localScale);
-                });
-            }
-            else
-            {
-                Debug.LogError("atmScreen is not assigned!");
-            }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("Player left ATM space");
-            if (halo != null)
-            {
-                SetHalo(false);
-                Debug.Log("Halo disabled.");
-            }
-
-            if (atmScreen != null)
-            {
-                Debug.Log("Current scale of atmScreen before scaling: " + atmScreen.transform.localScale);
-                LeanTween.scale(atmScreen, Vector3.zero, 1).setOnComplete(() =>
-                {
-                    Debug.Log("atmScreen scaled to zero");
-                    Debug.Log("New scale of atmScreen: " + atmScreen.transform.localScale);
-                });
-            }
-            else
-            {
-                Debug.LogError("atmScreen is not assigned!");
-            }
-        }
-    }
-
-    public void SetHalo(bool shouldEnable)
-    {
-        if (halo != null)
-        {
-            halo.enabled = shouldEnable;
-            Debug.Log("Halo set to: " + shouldEnable);
+            // Forcer le rafraîchissement de l'affichage
+            StartCoroutine(ForceRefresh());
         }
         else
         {
-            Debug.LogError("Halo component is missing!");
+            Debug.LogError("No puzzle pieces assigned!");
         }
+    }
+
+    private void ActivatePuzzlePiece(int activeIndex)
+    {
+        for (int i = 0; i < puzzlePieces.Length; i++)
+        {
+            bool shouldBeActive = (i == activeIndex);
+            puzzlePieces[i].SetActive(shouldBeActive);
+            Debug.Log(puzzlePieces[i].name + " active state set to " + shouldBeActive);
+        }
+        puzManager.GetComponent<PuzzleManager>().CheckPuzzleCompletion();
+    }
+
+    private IEnumerator ForceRefresh()
+    {
+        yield return new WaitForEndOfFrame();
+        Canvas.ForceUpdateCanvases();
     }
 }

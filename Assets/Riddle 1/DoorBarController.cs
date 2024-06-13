@@ -1,67 +1,53 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DoorBarController : MonoBehaviour
 {
-    public Animator doorAnimator;
-    public AudioClip openSound;
-    public AudioClip closeSound;
-    private AudioSource audioSource;
-    public bool isPuzzleDoor = false; // Indique si c'est une porte de puzzle
+    private Animator doorAnimator;
+    private bool isOpen = false;
 
-    private bool isOpen = false; // Indique si la porte est ouverte
+    // Définir la variable isDoorOpen
+    public static bool isDoorOpen = false;
+
+    // Définir l'événement OnDoorOpened
+    public static UnityEvent OnDoorOpened = new UnityEvent();
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("OnTriggerEnter called on " + gameObject.name);
-        if (other.CompareTag("Player") && !isOpen && !isPuzzleDoor)
+        doorAnimator = GetComponent<Animator>();
+        if (doorAnimator == null)
         {
-            Debug.Log("Opening door on trigger enter: " + gameObject.name);
-            OpenDoor();
+            Debug.LogError("Animator not found on " + gameObject.name);
         }
+
+        // S'abonner à l'événement OnDoorOpened
+        PuzzleManager.OnPuzzleCompleted.AddListener(OpenDoor);
     }
 
-    private void OnTriggerExit(Collider other)
+    public void OpenDoor()
     {
-        Debug.Log("OnTriggerExit called on " + gameObject.name);
-        if (other.CompareTag("Player") && isOpen && !isPuzzleDoor)
-        {
-            Debug.Log("Closing door on trigger exit: " + gameObject.name);
-            CloseDoor();
-        }
-    }
-
-    public void OpenDoor() // Méthode publique pour ouvrir la porte
-    {
-        Debug.Log("OpenDoor called on " + gameObject.name + ", isPuzzleDoor: " + isPuzzleDoor);
-        if (!isOpen) // Vérification pour éviter les appels multiples
+        if (!isOpen)
         {
             doorAnimator.SetTrigger("open");
-            PlaySound(openSound);
-            isOpen = true; // Marquer la porte comme ouverte
+            isOpen = true;
+            Debug.Log("Door opened: " + gameObject.name);
+            isDoorOpen = true;
+
+            // Déclencher l'événement OnDoorOpened
+            if (OnDoorOpened != null)
+            {
+                OnDoorOpened.Invoke();
+            }
         }
     }
 
-    public void CloseDoor() // Méthode publique pour fermer la porte
+    public void CloseDoor()
     {
-        Debug.Log("CloseDoor called on " + gameObject.name + ", isPuzzleDoor: " + isPuzzleDoor);
-        if (isOpen) // Vérification pour éviter les appels multiples
+        if (isOpen)
         {
             doorAnimator.SetTrigger("close");
-            PlaySound(closeSound);
-            isOpen = false; // Marquer la porte comme fermée
-        }
-    }
-
-    private void PlaySound(AudioClip clip)
-    {
-        if (audioSource != null && clip != null)
-        {
-            audioSource.PlayOneShot(clip);
+            isOpen = false;
+            Debug.Log("Door closed: " + gameObject.name);
         }
     }
 }

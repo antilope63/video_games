@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PuzzleManager : MonoBehaviour
 {
-    public GameObject[] PuzzlePieceHolder1;
-    public GameObject[] PuzzlePieceHolder2;
-    public GameObject[] PuzzlePieceHolder3;
+    public GameObject[] PuzzlePieceHolder1; // Red pieces
+    public GameObject[] PuzzlePieceHolder2; // Purple pieces
+    public GameObject[] PuzzlePieceHolder3; // Yellow pieces
 
     private DoorBarController specificDoorController;
     private int PurpleCounter;
     private int PinkCounter;
     private int YellowCounter;
+
+    // Définir l'événement OnPuzzleCompleted
+    public static UnityEvent OnPuzzleCompleted = new UnityEvent();
 
     void Start()
     {
@@ -46,141 +50,77 @@ public class PuzzleManager : MonoBehaviour
 
     public void purpleATM()
     {
+        Debug.Log("Purple Hit");
         PurpleCounter++;
-        Debug.Log("purpleATM called. PurpleCounter: " + PurpleCounter);
-
-        switch (PurpleCounter)
-        {
-            case 0:
-                Debug.Log("Before activating purple piece 0");
-                ActivatePuzzlePiece(PuzzlePieceHolder1, 0);
-                Debug.Log("After activating purple piece 0");
-                break;
-            case 1:
-                Debug.Log("Before activating purple piece 1");
-                ActivatePuzzlePiece(PuzzlePieceHolder1, 1);
-                Debug.Log("After activating purple piece 1");
-                break;
-            case 2:
-                Debug.Log("Before activating purple piece 2");
-                ActivatePuzzlePiece(PuzzlePieceHolder1, 2);
-                Debug.Log("After activating purple piece 2");
-                break;
-            case 3:
-                Debug.Log("Before resetting purple pieces");
-                ActivatePuzzlePiece(PuzzlePieceHolder1, 0);
-                PurpleCounter = 0;
-                Debug.Log("After resetting purple pieces");
-                break;
-        }
-
-        CheckPuzzleCompletion(); // Appeler la vérification après chaque modification
+        if (PurpleCounter >= PuzzlePieceHolder1.Length) PurpleCounter = 0;
+        ActivatePuzzlePiece(PuzzlePieceHolder1, PurpleCounter);
+        CheckPuzzleCompletion();
     }
 
     public void pinkATM()
     {
         PinkCounter++;
-        Debug.Log("pinkATM called. PinkCounter: " + PinkCounter);
-
-        switch (PinkCounter)
-        {
-            case 0:
-                Debug.Log("Before activating pink piece 0");
-                ActivatePuzzlePiece(PuzzlePieceHolder2, 0);
-                Debug.Log("After activating pink piece 0");
-                break;
-            case 1:
-                Debug.Log("Before activating pink piece 1");
-                ActivatePuzzlePiece(PuzzlePieceHolder2, 1);
-                Debug.Log("After activating pink piece 1");
-                break;
-            case 2:
-                Debug.Log("Before activating pink piece 2");
-                ActivatePuzzlePiece(PuzzlePieceHolder2, 2);
-                Debug.Log("After activating pink piece 2");
-                break;
-            case 3:
-                Debug.Log("Before resetting pink pieces");
-                ActivatePuzzlePiece(PuzzlePieceHolder2, 0);
-                PinkCounter = 0;
-                Debug.Log("After resetting pink pieces");
-                break;
-        }
-
-        CheckPuzzleCompletion(); // Appeler la vérification après chaque modification
+        if (PinkCounter >= PuzzlePieceHolder2.Length) PinkCounter = 0;
+        ActivatePuzzlePiece(PuzzlePieceHolder2, PinkCounter);
+        CheckPuzzleCompletion();
     }
 
     public void yellowATM()
     {
         YellowCounter++;
-        Debug.Log("yellowATM called. YellowCounter: " + YellowCounter);
-
-        switch (YellowCounter)
-        {
-            case 0:
-                Debug.Log("Before activating yellow piece 0");
-                ActivatePuzzlePiece(PuzzlePieceHolder3, 0);
-                Debug.Log("After activating yellow piece 0");
-                break;
-            case 1:
-                Debug.Log("Before activating yellow piece 1");
-                ActivatePuzzlePiece(PuzzlePieceHolder3, 1);
-                Debug.Log("After activating yellow piece 1");
-                break;
-            case 2:
-                Debug.Log("Before activating yellow piece 2");
-                ActivatePuzzlePiece(PuzzlePieceHolder3, 2);
-                Debug.Log("After activating yellow piece 2");
-                break;
-            case 3:
-                Debug.Log("Before resetting yellow pieces");
-                ActivatePuzzlePiece(PuzzlePieceHolder3, 0);
-                YellowCounter = 0;
-                Debug.Log("After resetting yellow pieces");
-                break;
-        }
-
+        if (YellowCounter >= PuzzlePieceHolder3.Length) YellowCounter = 0;
+        ActivatePuzzlePiece(PuzzlePieceHolder3, YellowCounter);
         CheckPuzzleCompletion();
     }
 
     private void ActivatePuzzlePiece(GameObject[] puzzlePieces, int activeIndex)
     {
-        Debug.Log("Activating puzzle piece. Active Index: " + activeIndex);
         for (int i = 0; i < puzzlePieces.Length; i++)
         {
             if (puzzlePieces[i] != null)
             {
-                bool shouldBeActive = (i == activeIndex);
-                puzzlePieces[i].SetActive(shouldBeActive);
-                Debug.Log($"{puzzlePieces[i].name} active state set to {shouldBeActive}");
-            }
-            else
-            {
-                Debug.LogError($"Puzzle piece at index {i} is null!");
+                puzzlePieces[i].SetActive(i == activeIndex);
             }
         }
     }
 
-    private void CheckPuzzleCompletion()
+    public void CheckPuzzleCompletion()
     {
         // Nouvelle combinaison pour réussir le puzzle
-        bool isPurpleCorrect = PuzzlePieceHolder1.Length > 1 && PuzzlePieceHolder1[1].activeSelf;
-        bool isPinkCorrect = PuzzlePieceHolder2.Length > 0 && PuzzlePieceHolder2[0].activeSelf;
-        bool isYellowCorrect = PuzzlePieceHolder3.Length > 2 && PuzzlePieceHolder3[2].activeSelf;
-
-        Debug.Log("CheckPuzzleCompletion called. Purple: " + isPurpleCorrect + ", Pink: " + isPinkCorrect + ", Yellow: " + isYellowCorrect);
+        bool isPurpleCorrect = PuzzlePieceHolder1.Length > 0 && PuzzlePieceHolder1[1].activeSelf;
+        bool isPinkCorrect = PuzzlePieceHolder2.Length > 0 && PuzzlePieceHolder2[1].activeSelf;
+        bool isYellowCorrect = PuzzlePieceHolder3.Length > 0 && PuzzlePieceHolder3[1].activeSelf;
 
         if (isPurpleCorrect && isPinkCorrect && isYellowCorrect)
         {
-            if (specificDoorController != null)
+            Debug.Log("Puzzle completed correctly!");
+
+            // Détruire les pièces holders
+            DestroyPuzzlePieceHolders();
+
+            // Déclencher l'événement OnPuzzleCompleted
+            if (OnPuzzleCompleted != null)
             {
-                Debug.Log("Puzzle completed. Opening door: " + specificDoorController.gameObject.name);
-                specificDoorController.OpenDoor();
-            }
-            else
-            {
-                Debug.LogError("specificDoorController is null!");
+                OnPuzzleCompleted.Invoke();
             }
         }
+    }
+
+    private void DestroyPuzzlePieceHolders()
+    {
+        foreach (GameObject holder in PuzzlePieceHolder1)
+        {
+            Destroy(holder);
+        }
+        foreach (GameObject holder in PuzzlePieceHolder2)
+        {
+            Destroy(holder);
+        }
+        foreach (GameObject holder in PuzzlePieceHolder3)
+        {
+            Destroy(holder);
+        }
+
+        Debug.Log("Puzzle piece holders destroyed.");
     }
 }

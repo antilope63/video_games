@@ -8,6 +8,7 @@ TagManager:
   - Detectable
   - Interactable
   - PuzzleDoor
+  - ATM
   layers:
   - Default
   - TransparentFX

@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 2612561040198885797}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -181,9 +181,9 @@ MonoBehaviour:
   speed: 5
   sprintSpeed: 10
   mouseSensitivity: 2
-  jumpForce: 5
-  sprintDuration: 2
-  sprintCooldown: 3
+  jumpForce: 250
+  sprintDuration: 999999
+  sprintCooldown: 0
   holdPosition: {fileID: 0}
   raycastRange: 10
   heldObject: {fileID: 0}
