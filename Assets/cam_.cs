@@ -20,7 +20,7 @@ public class cam : MonoBehaviour
         {
             if (hit.collider.CompareTag("Interactable"))
             {
-                Debug.Log("Raycast hit: " + hit.collider.gameObject.name);
+                
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     if (playerMovementController.heldObject == null)
