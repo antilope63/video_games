@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class MonsterController_1 : MonoBehaviour
 {
-    public Transform player; // La référence au joueur que le monstre doit suivre
+    public Transform player;
     public float walkSpeed = 2.0f;
     public float runSpeed = 4.0f;
     public float detectionRange = 10.0f;
@@ -17,7 +17,7 @@ public class MonsterController_1 : MonoBehaviour
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
 
-        // Vérifier que le NavMeshAgent est actif et sur un NavMesh
+        // S'assurer que le NavMeshAgent est actif
         if (agent != null && agent.isOnNavMesh)
         {
             agent.isStopped = false;
