@@ -17,13 +17,17 @@ public class PlayerMovementController : MonoBehaviour
     public GameObject hintPanel2; // Référence au deuxième HintPanel
     public GameObject hintPanel3; // Référence au troisième HintPanel
     public GameObject hintPanel4; // Référence au quatrième HintPanel
+    public GameObject hintPanel5; // Référence au cinquième HintPanel
+
+    public GameObject passwordCanvas; // Référence au canvas du mot de passe
+
+    public GameObject heldObject = null; // Rendre public pour accéder depuis ObjectInteraction
 
     private float verticalRotation = 0f;
     private bool isGrounded;
     private float sprintTimer = 0f;
     private float sprintCooldownTimer = 0f;
     private bool canSprint = true;
-    public GameObject heldObject = null; // Rendre public pour accéder depuis ObjectInteraction
     private GameObject currentHintPanel = null;
 
     private Rigidbody rb;
@@ -38,6 +42,17 @@ public class PlayerMovementController : MonoBehaviour
         if (hintPanel2 != null) hintPanel2.SetActive(false);
         if (hintPanel3 != null) hintPanel3.SetActive(false);
         if (hintPanel4 != null) hintPanel4.SetActive(false);
+        if (hintPanel5 != null) hintPanel5.SetActive(false);
+
+        // Assurez-vous que le panneau de mot de passe est désactivé au début
+        if (passwordCanvas != null)
+        {
+            PasswordInputController passwordInputController = passwordCanvas.GetComponent<PasswordInputController>();
+            if (passwordInputController != null)
+            {
+                passwordInputController.ClosePasswordPanel();
+            }
+        }
     }
 
     void Update()
@@ -105,26 +120,29 @@ public class PlayerMovementController : MonoBehaviour
 
         // Interaction avec les panneaux (énigmes)
         HandlePanelInteraction();
+
+        // Interaction avec le panneau de mot de passe
+        HandlePasswordPanelInteraction();
     }
 
     private void HandleObjectInteraction()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, raycastRange))
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            if (hit.collider.CompareTag("Interactable"))
+            if (heldObject == null)
             {
-                if (Input.GetKeyDown(KeyCode.E))
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, transform.forward, out hit, raycastRange))
                 {
-                    if (heldObject == null)
+                    if (hit.collider.CompareTag("Interactable"))
                     {
                         PickUpObject(hit.collider.gameObject);
                     }
-                    else
-                    {
-                        DropObject();
-                    }
                 }
+            }
+            else
+            {
+                DropObject();
             }
         }
     }
@@ -166,9 +184,36 @@ public class PlayerMovementController : MonoBehaviour
                     Debug.Log("Toggling hintPanel4");
                     ToggleHintPanel(hintPanel4);
                 }
+                else if (hit.collider.CompareTag("enigme2_5"))
+                {
+                    Debug.Log("Toggling hintPanel5");
+                    ToggleHintPanel(hintPanel5);
+                }
                 else
                 {
-                    Debug.Log("No matching tag found for: " + hit.collider.gameObject.name);
+                   // Debug.Log("No matching tag found for: " + hit.collider.gameObject.name);
+                }
+            }
+        }
+    }
+
+    private void HandlePasswordPanelInteraction()
+    {
+        
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit, raycastRange))
+        {
+            if (hit.collider.CompareTag("PasswordInteractable"))
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    
+                    PasswordInputController passwordInputController = passwordCanvas.GetComponent<PasswordInputController>();
+                    if (passwordInputController != null)
+                    {
+                        Debug.Log("Opening password panel...");
+                        passwordInputController.OpenPasswordPanel();
+                    }
                 }
             }
         }
@@ -196,9 +241,9 @@ public class PlayerMovementController : MonoBehaviour
         Debug.Log("Picking up: " + obj.name);
         heldObject = obj;
         obj.GetComponent<Rigidbody>().isKinematic = true;
-        obj.transform.SetParent(holdPosition, true); // worldPositionStays true to maintain world space
-        obj.transform.localPosition = Vector3.zero; // Reset local position
-        obj.transform.localRotation = Quaternion.identity; // Reset local rotation
+        obj.transform.SetParent(holdPosition);
+        obj.transform.localPosition = Vector3.zero;
+        obj.transform.localRotation = Quaternion.identity;
     }
 
     public void DropObject()
@@ -208,6 +253,7 @@ public class PlayerMovementController : MonoBehaviour
             Debug.Log("Dropping: " + heldObject.name);
             heldObject.GetComponent<Rigidbody>().isKinematic = false;
             heldObject.transform.SetParent(null);
+            heldObject.transform.position = transform.position + transform.forward; // Déplace l'objet devant le joueur
             heldObject = null;
         }
     }

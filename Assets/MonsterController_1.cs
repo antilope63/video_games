@@ -50,7 +50,7 @@ public class MonsterController_1 : MonoBehaviour
             }
             else if (distanceToPlayer <= attackRange)
             {
-                Debug.Log("Player in attack range.");
+                
                 agent.isStopped = true;
                 animator.SetBool("isWalking", false);
                 animator.SetBool("isRunning", false);
@@ -68,7 +68,7 @@ public class MonsterController_1 : MonoBehaviour
         }
         else
         {
-            Debug.LogError("NavMeshAgent is not on NavMesh or is null.");
+            
         }
     }
 }
